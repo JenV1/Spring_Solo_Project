@@ -15,6 +15,10 @@ public class Pet {
     private String animalType;
     private int age;
 
+    @ManyToOne
+    private Owner owner;
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "assignments",
         joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name ="vet_id")
