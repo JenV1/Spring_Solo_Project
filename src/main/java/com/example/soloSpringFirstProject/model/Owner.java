@@ -16,7 +16,7 @@ public class Owner {
     private String lastName;
     private String address;
 
-    @OneToMany(mappedBy ="owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy ="owner", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties(value = {"owner", "vets"})
     private List<Pet> ownedPets;
 

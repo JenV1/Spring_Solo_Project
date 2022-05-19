@@ -15,7 +15,7 @@ public class Vet {
     private String name;
     private int foundingYear;
 
-    @ManyToMany(mappedBy = "vets")
+    @ManyToMany(mappedBy = "vets", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties(value = {"vets"})
     private List<Pet> pets;
 

@@ -2,11 +2,10 @@ package com.example.soloSpringFirstProject.controller;
 
 import com.example.soloSpringFirstProject.model.Owner;
 import com.example.soloSpringFirstProject.respository.OwnerRepository;
+import com.example.soloSpringFirstProject.respository.PetRepository;
 import com.example.soloSpringFirstProject.respository.VetRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +29,17 @@ public class OwnerController {
     public ResponseEntity<Optional<Owner>> getIndividualOwner(@PathVariable Long id) {
         Optional<Owner> owner = ownerRepository.findById(id);
         return ResponseEntity.ok().body(owner);
+    }
+
+    @PostMapping("/owners")
+    public void postOwner(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String address) {
+        Owner owner = new Owner(null, firstName, lastName, address, null);
+        ownerRepository.save(owner);
+    }
+
+    @DeleteMapping("/owners/{id}")
+    public void deleteOwner(@PathVariable Long id) {
+        ownerRepository.deleteById(id);
     }
 
 }
