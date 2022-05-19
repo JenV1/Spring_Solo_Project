@@ -39,8 +39,15 @@ public class VetController {
         vetRepository.save(vet);
     }
 
-//    @DeleteMapping("/vets/{id}")
-//    public void deleteVet(@PathVariable Long id) {
-//        vetRepository.deleteById(id);
-//    }
+    @PostMapping("/assignments")
+    public void addAssignment(@RequestParam Long pet_id, @RequestParam Long vet_id) {
+        vetRepository.addPetVetAssociation(pet_id, vet_id);
+    }
+
+    @DeleteMapping("/vets/{id}")
+    public void deleteVet(@PathVariable Long id) {
+        vetRepository.deleteVetFromAssignments(id);
+        vetRepository.deleteById(id);
+    }
+
 }

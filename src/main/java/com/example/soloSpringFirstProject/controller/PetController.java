@@ -20,9 +20,10 @@ public class PetController {
         this.ownerRepository = ownerRepository;
     }
 
-    @GetMapping("/pets")
-    public ResponseEntity<List<Pet>> getPets() {
-        List<Pet> pets = petRepository.findAll();
+    @RequestMapping(value = "pets",method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<Pet>> getPetsOverAge(@RequestParam(value = "petAge",
+            defaultValue = "0") int petAge) {
+        List<Pet> pets = petRepository.returnPetsAboveAge(petAge);
         return ResponseEntity
                 .ok()
                 .body(pets);

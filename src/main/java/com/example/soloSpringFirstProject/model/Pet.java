@@ -22,7 +22,7 @@ public class Pet {
     private Owner owner;
 
 
-    @ManyToMany(cascade = {PERSIST, MERGE})
+    @ManyToMany(cascade = {PERSIST, MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "assignments",
         joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name ="vet_id")
     )

@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Vet {
@@ -19,7 +18,7 @@ public class Vet {
     private String name;
     private int foundingYear;
 
-    @ManyToMany(mappedBy = "vets")
+    @ManyToMany(mappedBy = "vets", cascade = PERSIST, fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = {"vets"})
     private Set<Pet> pets;
 
