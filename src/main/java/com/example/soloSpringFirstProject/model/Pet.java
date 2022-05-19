@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Pet {
@@ -23,7 +22,7 @@ public class Pet {
     private Owner owner;
 
 
-    @ManyToMany(cascade = {PERSIST, DETACH})
+    @ManyToMany(cascade = {PERSIST, MERGE})
     @JoinTable(name = "assignments",
         joinColumns = @JoinColumn(name = "pet_id"), inverseJoinColumns = @JoinColumn(name ="vet_id")
     )

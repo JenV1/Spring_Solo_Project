@@ -19,7 +19,7 @@ public class Vet {
     private String name;
     private int foundingYear;
 
-    @ManyToMany(mappedBy = "vets", cascade = {PERSIST, DETACH})
+    @ManyToMany(mappedBy = "vets")
     @JsonIgnoreProperties(value = {"vets"})
     private Set<Pet> pets;
 
