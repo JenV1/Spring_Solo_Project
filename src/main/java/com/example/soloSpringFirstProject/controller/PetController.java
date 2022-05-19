@@ -46,6 +46,10 @@ public class PetController {
 
     @DeleteMapping("/pets/{id}")
     public void deletePet(@PathVariable Long id) {
-        petRepository.deleteById(id);
+        try {
+            petRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Pet doesn't exist.");
+        }
     }
 }

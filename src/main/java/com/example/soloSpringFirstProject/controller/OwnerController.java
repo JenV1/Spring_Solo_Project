@@ -39,7 +39,11 @@ public class OwnerController {
 
     @DeleteMapping("/owners/{id}")
     public void deleteOwner(@PathVariable Long id) {
-        ownerRepository.deleteById(id);
+        try {
+            ownerRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Owner doesn't exist.");
+        }
     }
 
 }
