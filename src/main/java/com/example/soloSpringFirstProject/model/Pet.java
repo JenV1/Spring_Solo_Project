@@ -29,11 +29,12 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(Long id, String name, String animalType, int age, List<Vet> vets) {
+    public Pet(Long id, String name, String animalType, int age, Owner owner, List<Vet> vets) {
         this.id = id;
         this.name = name;
         this.animalType = animalType;
         this.age = age;
+        this.owner = owner;
         this.vets = vets;
     }
 
@@ -75,5 +76,13 @@ public class Pet {
 
     public void setVets(List<Vet> vets) {
         this.vets = vets;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 }
