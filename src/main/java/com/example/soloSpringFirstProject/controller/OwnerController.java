@@ -31,6 +31,14 @@ public class OwnerController {
         return ResponseEntity.ok().body(owner);
     }
 
+    @GetMapping("/ownersAndVets")
+    public ResponseEntity<List> getOwnersAndTheirAssociatedVets() {
+        List ownersAndVets = ownerRepository.getOwnersAndAssociatedVets();
+        return ResponseEntity
+                .ok()
+                .body(ownersAndVets);
+    }
+
     @PostMapping("/owners")
     public void postOwner(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String address) {
         Owner owner = new Owner(null, firstName, lastName, address, null);
