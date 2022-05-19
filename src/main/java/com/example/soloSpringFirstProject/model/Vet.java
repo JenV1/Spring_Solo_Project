@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
 public class Vet {
@@ -15,14 +19,14 @@ public class Vet {
     private String name;
     private int foundingYear;
 
-    @ManyToMany(mappedBy = "vets", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "vets", cascade = {PERSIST, DETACH})
     @JsonIgnoreProperties(value = {"vets"})
-    private List<Pet> pets;
+    private Set<Pet> pets;
 
     public Vet() {
     }
 
-    public Vet(Long id, String name, int foundingYear, List<Pet> pets) {
+    public Vet(Long id, String name, int foundingYear, Set<Pet> pets) {
         this.id = id;
         this.name = name;
         this.foundingYear = foundingYear;
@@ -53,11 +57,11 @@ public class Vet {
         this.foundingYear = foundingYear;
     }
 
-    public List<Pet> getPets() {
+    public Set<Pet> getPets() {
         return pets;
     }
 
-    public void setPets(List<Pet> pets) {
+    public void setPets(Set<Pet> pets) {
         this.pets = pets;
     }
 }

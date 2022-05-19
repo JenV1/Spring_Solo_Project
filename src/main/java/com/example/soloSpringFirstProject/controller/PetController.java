@@ -41,6 +41,10 @@ public class PetController {
                         @RequestParam Long ownerID) {
         Pet pet = new Pet(null, name, animalType, age, ownerRepository.getById(ownerID), null);
         petRepository.save(pet);
+    }
 
+    @DeleteMapping("/pets/{id}")
+    public void deletePet(@PathVariable Long id) {
+        petRepository.deleteById(id);
     }
 }
